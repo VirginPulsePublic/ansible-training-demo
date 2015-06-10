@@ -1,0 +1,20 @@
+- name: Install Nginx
+  apt: pkg=nginx state=installed update_cache=true
+  notify:
+   - Restart Nginx
+
+- name: Create Nginx Root
+  file: dest={{rootdir}} state=directory owner=www-data group=www-data mode=775
+  notify:
+   - Restart Nginx
+
+- name: Add Nginx Site Config
+  template: src=example.org.conf dest=/etc/nginx/sites-available/{{domain_name}}.conf
+
+- name: Enable Nginx Site Config
+  file: src=/etc/nginx/sites-available/{{domain_name}}.conf dest=/etc/nginx/sites-enabled/{{domain_name}}.conf state=link
+
+- name: Add Index Page
+  template: src=index.html dest={{rootdir}} owner=www-data group=www-data mode=775
+  notify:
+   - Restart Nginx

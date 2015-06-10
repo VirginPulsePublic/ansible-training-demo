@@ -6,7 +6,7 @@ Dependencies/Setup:
 
 After you have these installed, in a new directory do the following steps:
 
-1 .Run “vagrant init” which will put a new file called “Vagrantfile” in that directory
+1. Run “vagrant init” which will put a new file called “Vagrantfile” in that directory
 2. Replace the contents of the Vagrantfile with the following:
 
 ```
